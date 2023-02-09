@@ -1,0 +1,25 @@
+.testimonials {
+  text-align: center;
+  h1,
+  p {
+    margin: 2rem auto;
+    max-width: 768px;
+  }
+
+  .img-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 1rem auto;
+    .brand-logo {
+      margin: 1rem auto;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .testimonials {
+    .img-wrapper {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

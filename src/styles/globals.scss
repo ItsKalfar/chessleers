@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+$ff-Poppins: "Poppins", sans-serif;
+$yellow: #ffb400;
+$faintYellow: #cb9005dd;
+$darkYellow: #a3730362;
+$dark: #010101;
+$light-grey: #aaaaaa;
+$primary: #ffffff;
+$bgGray: #d0d0d025;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: $ff-Poppins;
+  color: $primary;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: $dark;
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 16px;
+  }
+  a,
+  a:active,
+  a:visited {
+    text-decoration: none;
+  }
+
+  li {
+    list-style: none;
+  }
+  .container {
+    // border: 1px solid black;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 0.75rem;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0.45rem 1.45rem;
+  font-family: $ff-Poppins;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn-yellow {
+  background-color: $yellow;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 1024px) {
+  p {
+    font-size: 18px;
+  }
+}
+
+@import "Navbar", "HeroSection", "About", "Testimonials", "SocialMedia",
+  "Footer";
+@import "LeaderBoard";
