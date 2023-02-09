@@ -46,7 +46,6 @@ body {
     list-style: none;
   }
   .container {
-    // border: 1px solid black;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -54,7 +53,7 @@ body {
   }
 }
 
-button {
+.btn {
   border: none;
   outline: none;
   padding: 0.45rem 1.45rem;
@@ -71,6 +70,7 @@ button {
   font-weight: 600;
   display: flex;
   align-items: center;
+  color: $primary;
 }
 
 @media screen and (min-width: 1024px) {
