@@ -1,29 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { SiLichess } from "react-icons/si";
-import {
-  AccessContext,
-  HttpClient,
-  OAuth2AuthCodePKCE,
-} from "@bity/oauth2-auth-code-pkce";
+import { OAuth2AuthCodePKCE } from "@bity/oauth2-auth-code-pkce";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import queryString from "query-string";
 
 export default function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const lichessHost = "https://lichess.org";
   const clientId = "http://localhost:3000/";
-  const redirectUrl = `http://localhost:3000/${res}`;
-  const code_challenge_method = "";
-  const code_challenge = "";
+  const clientUrl = `http://localhost:3000/logged`;
   const scopes = ["email:read"];
-  const username = "";
-  const state = "";
 
-  const oauth = new OAuth2AuthCodePKCE({
-    authorizationUrl: lichessHost,
-    clientId,
-    redirectUrl,
-    scopes,
-    onInvalidGrant: toast.error("Something went wrong!"),
-  });
+  const handleLogin = async () => {
+    const auth = new OAuth2AuthCodePKCE({
+      authorizationUrl: `${lichessHost}/oauth`,
+      tokenUrl: `${lichessHost}/api/token`,
+      clientId,
+      scopes,
+      redirectUrl: clientUrl,
+      onAccessTokenExpiry: (refreshAccessToekn) => refreshAccessToekn(),
+      onInvalidGrant: console.warn,
+    });
+
+    try {
+      await auth.fetchAuthorizationCode();
+      setIsLoggedIn(true);
+      toast.success("Done");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
 
   return (
     <nav className="container navbar">
@@ -37,10 +45,17 @@ export default function Navbar() {
         <Link href="/leaderboard" className="nav-link">
           Leaderboard
         </Link>
-        <Link href="https://lichess.org/login" className="btn btn-yellow">
-          <p>Login with</p>
-          <SiLichess className="Silichess" />
-        </Link>
+        {isLoggedIn ? (
+          <button className="btn btn-yellow" onClick={handleLogin}>
+            <p>Log Out</p>
+            <SiLichess className="Silichess" />
+          </button>
+        ) : (
+          <button className="btn btn-yellow" onClick={handleLogin}>
+            <p>Login with</p>
+            <SiLichess className="Silichess" />
+          </button>
+        )}
       </div>
     </nav>
   );
