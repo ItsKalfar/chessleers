@@ -13,8 +13,9 @@ export default function Home() {
         <title>Chessleers</title>
         <meta
           http-equiv="Content-Security-Policy"
-          content="default-src http://localhost:3000/; object-src 'none'; unsafe-inline"
-        ></meta>
+          content="default-src 'self'; script-src 'unsafe-eval'; object-src 'none'; style-src 'unsafe-inline'"
+        />
+        {/* <meta http-equiv="Permissions-Policy" content="interest-cohort=()" /> */}
       </Head>
       <Toaster position="top-center" reverseOrder={false} />
       <HeroSection />

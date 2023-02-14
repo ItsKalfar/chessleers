@@ -20,12 +20,12 @@ export const ChessleersContextProvider = ({ children }) => {
       clientId,
       scopes,
       redirectUrl: clientUrl,
-      onAccessTokenExpiry: (refreshAccessToken) => refreshAccessToken(),
+      onAccessTokenExpiry: console.log("Token expired"),
       onInvalidGrant: (error) => console.log(error),
     });
   }
 
-  const checkStatus = async () => {
+  async () => {
     try {
       const accessContext = await oauth.getAccessToken();
       if (accessContext) await authenticate();
@@ -50,15 +50,16 @@ export const ChessleersContextProvider = ({ children }) => {
   };
 
   const handleLogin = async () => {
-    await oauth.fetchAuthorizationCode();
-    toast.success(email);
+    try {
+      await oauth.fetchAuthorizationCode();
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      checkStatus();
-    }
-  }, []);
+  const handleLogout = async () => {};
+
+  useEffect(() => {}, []);
 
   return (
     <ChessleersContext.Provider value={{ email, handleLogin }}>
