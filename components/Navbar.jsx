@@ -5,6 +5,10 @@ import { ChessleersContext } from "../context/ChessleersContext";
 
 export default function Navbar() {
   const { handleLogin, email } = useContext(ChessleersContext);
+
+  const handle = () => {
+    handleLogin();
+  };
   return (
     <nav className="container navbar">
       <div>
@@ -17,17 +21,10 @@ export default function Navbar() {
         <Link href="/leaderboard" className="nav-link">
           Leaderboard
         </Link>
-        {email ? (
-          <button className="btn btn-yellow">
-            <span>Log out</span>
-            <SiLichess className="Silichess" />
-          </button>
-        ) : (
-          <button className="btn btn-yellow" onClick={handleLogin()}>
-            <span>Login with</span>
-            <SiLichess className="Silichess" />
-          </button>
-        )}
+        <button className="btn btn-yellow" onClick={handle}>
+          <span>Login with</span>
+          <SiLichess className="Silichess" />
+        </button>
       </div>
     </nav>
   );

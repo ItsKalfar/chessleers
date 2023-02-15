@@ -20,46 +20,51 @@ export const ChessleersContextProvider = ({ children }) => {
       clientId,
       scopes,
       redirectUrl: clientUrl,
-      onAccessTokenExpiry: console.log("Token expired"),
+      onAccessTokenExpiry: (refreshAccessToken) => refreshAccessToken(),
       onInvalidGrant: (error) => console.log(error),
     });
   }
 
-  async () => {
-    try {
-      const accessContext = await oauth.getAccessToken();
-      if (accessContext) await authenticate();
-    } catch (error) {
-      toast.error(error);
-    }
+  const authenticate = async () => {
+    const httpClient = oauth.decorateFetchHTTPClient(window.fetch);
+    const res = await httpClient(`${lichessHost}/api/account`);
+    const userEmail = { ...(await res.json()), httpClient };
+    if (userEmail.error) throw email.error;
+    setEmail(userEmail);
+    console.log(userEmail);
+  };
+
+  const checkStatus = async () => {
     if (typeof email !== null || typeof email !== "undefined") {
       try {
         const hasAuthCode = await oauth.isReturningFromAuthServer();
         if (hasAuthCode) await authenticate();
       } catch (err) {
-        toast.error(err);
+        console.log(err);
       }
     }
-    const authenticate = async () => {
-      const httpClient = oauth.decorateFetchHTTPClient(window.fetch);
-      const res = await httpClient(`${lichessHost}/api/account`);
-      const userEmail = { ...(await res.json()), httpClient };
-      if (userEmail.error) throw email.error;
-      setEmail(userEmail);
-    };
+  };
+
+  const getAccess = async () => {
+    try {
+      const accessContext = await oauth.getAccessToken();
+      if (accessContext) await authenticate();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLogin = async () => {
-    try {
-      await oauth.fetchAuthorizationCode();
-    } catch (error) {
-      toast.error(error);
-    }
+    await oauth.fetchAuthorizationCode();
   };
 
   const handleLogout = async () => {};
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // checkStatus();
+    getAccess();
+    console.log("run");
+  }, []);
 
   return (
     <ChessleersContext.Provider value={{ email, handleLogin }}>
