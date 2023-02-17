@@ -11,9 +11,12 @@ A passionate frontend and blockchain developer from India
 
 ## To use the project
 
-**Clone the github repository** \
-**Run yarn add** \
-**Run yarn dev**
+```
+git clone https://github.com/ItsKalfar/chessleers.git
+yarn add
+yarn dev
+
+```
 
 Then you can use the website on your local machine \
-To visit the live webiste, click here!
+To visit the live webiste, click [here](https://chessleers.vercel.app/)!
