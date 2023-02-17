@@ -14,8 +14,8 @@ export const ChessleersContextProvider = ({ children }) => {
   let oauth;
 
   //Parameters to pass in function OAuth2AuthCodePKCE while development
-  const lichessHost = `https://lichess.org`;
-  const clientId = "http://localhost:3000/";
+  const lichessHost = process.env.NEXT_PUBLIC_LICHESS_HOST;
+  const clientId = "";
   const scopes = ["email:read"];
   const clientUrl = "http://localhost:3000/logged";
 
