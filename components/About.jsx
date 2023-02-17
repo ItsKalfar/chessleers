@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "./Card";
 import { SiLichess } from "react-icons/si";
 import { GiSwordsEmblem } from "react-icons/gi";

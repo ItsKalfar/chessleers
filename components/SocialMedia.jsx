@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineTwitter, AiOutlineInstagram } from "react-icons/ai";
 import { FaDiscord } from "react-icons/fa";
 import Link from "next/link";

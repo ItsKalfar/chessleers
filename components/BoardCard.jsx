@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineTrophy } from "react-icons/ai";
 
 export default function BoardCard({ id, name, username, email }) {

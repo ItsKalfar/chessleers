@@ -7,8 +7,16 @@
   margin-bottom: 5rem;
   .hero-section-img {
     margin: 4rem auto;
+    height: 20rem;
     width: 100%;
-    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../assets/chess.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
   }
 
   .hero-section-text {
@@ -25,6 +33,7 @@
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
+
     .hero-section-img,
     .hero-section-text {
       width: 50%;

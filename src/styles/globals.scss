@@ -1,5 +1,7 @@
+// Importing Poppins font from Google-fonts
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+// Variables
 $ff-Poppins: "Poppins", sans-serif;
 $yellow: #ffb400;
 $faintYellow: #cb9005dd;
@@ -9,6 +11,7 @@ $light-grey: #aaaaaa;
 $primary: #ffffff;
 $bgGray: #d0d0d025;
 
+// Global styles
 *,
 *::before,
 *::after {
@@ -71,6 +74,13 @@ body {
   display: flex;
   align-items: center;
   color: $primary;
+}
+
+.logged {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
 }
 
 @media screen and (min-width: 1024px) {

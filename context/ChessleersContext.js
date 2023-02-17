@@ -1,13 +1,19 @@
-import React, { useState, createContext, useEffect } from "react";
+import { useState, createContext, useEffect } from "react";
 import { OAuth2AuthCodePKCE } from "@bity/oauth2-auth-code-pkce";
-import { toast } from "react-hot-toast";
 
+// Exporting context
 export const ChessleersContext = createContext();
 
+// Context provider
+
 export const ChessleersContextProvider = ({ children }) => {
+  // To get the email address of the player after he/she logs in
   const [email, setEmail] = useState(null);
+
+  // Authentication variable
   let oauth;
 
+  //Parameters to pass in function OAuth2AuthCodePKCE while development
   const lichessHost = `https://lichess.org`;
   const clientId = "http://localhost:3000/";
   const scopes = ["email:read"];
@@ -34,6 +40,7 @@ export const ChessleersContextProvider = ({ children }) => {
     console.log(userEmail);
   };
 
+  // Check if user has already logged in
   const checkStatus = async () => {
     if (typeof email !== null || typeof email !== "undefined") {
       try {
@@ -45,6 +52,7 @@ export const ChessleersContextProvider = ({ children }) => {
     }
   };
 
+  // Get the access to the token stored in localStorage
   const getAccess = async () => {
     try {
       const accessContext = await oauth.getAccessToken();
@@ -54,16 +62,16 @@ export const ChessleersContextProvider = ({ children }) => {
     }
   };
 
+  // Login into the account
   const handleLogin = async () => {
     await oauth.fetchAuthorizationCode();
   };
 
+  // Logout
   const handleLogout = async () => {};
 
   useEffect(() => {
-    // checkStatus();
     getAccess();
-    console.log("run");
   }, []);
 
   return (

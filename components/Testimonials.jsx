@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import mesh from "../assets/mesh.webp";
 import tachyon from "../assets/tachyon.webp";
