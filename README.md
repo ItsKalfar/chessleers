@@ -15,7 +15,6 @@ A passionate frontend and blockchain developer from India
 git clone https://github.com/ItsKalfar/chessleers.git
 yarn add
 yarn dev
-
 ```
 
 Then you can use the website on your local machine \
